@@ -3,9 +3,6 @@ html
     title= title
   body
     h1= message
-
     ul
-      li Go to market
-      li Cooking rice
-      li Washing dishes
-      li Learing at coderX-Tokyo
+     each val in todoList
+      li= val
