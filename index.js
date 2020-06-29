@@ -1,17 +1,24 @@
-const express = require('express')
-const app = express()
-const port = 3000
+var express = require('express')
+var app = express()
+var port = 3000
+var low = require('lowdb')
+var FileSync = require('lowdb/adapters/FileSync')
+var adapter = new FileSync('db.json')
+var bodyParser = require('body-parser')
+var db = low(adapter)
 
-const bodyParser = require('body-parser')
+db.defaults({todo: [{id: 1, "text": "blah"}]})
+  .write();
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+
 var todos = [
   		'Go to market',
   		'nấu cơm',
   		'Washing dishes',
   		'Learing at coderX-Tokyo'
-  	]
+  	];
 app.set('views', './views');
 app.set('view engine', 'pug');
 
