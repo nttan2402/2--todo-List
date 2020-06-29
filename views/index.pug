@@ -2,7 +2,13 @@ html
   head
     title= title
   body
-    h1= message
+    h1=message
+    form(action='/todos' method = 'GET')
+      input(type='text', name='q')
+      br
+      br
+      button Search
+
     ul
      each val in todoList
       li= val
