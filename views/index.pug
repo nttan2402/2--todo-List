@@ -12,3 +12,7 @@ html
     ul
      each val in todoList
       li= val
+  form(action="/todos/create" method="POST")
+    label Name 
+    input(type="text" name="todo")
+    button Add Todo
