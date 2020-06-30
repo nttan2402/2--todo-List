@@ -1,24 +1,17 @@
-var express = require('express')
-var app = express()
-var port = 3000
-var low = require('lowdb')
-var FileSync = require('lowdb/adapters/FileSync')
-var adapter = new FileSync('db.json')
-var bodyParser = require('body-parser')
-var db = low(adapter)
+const express = require('express')
+const app = express()
+const port = 3000
 
-db.defaults({todo: [{id: 1, "text": "blah"}]})
-  .write();
+const bodyParser = require('body-parser')
 
 app.use(bodyParser.json()) // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
-
 var todos = [
   		'Go to market',
   		'nấu cơm',
   		'Washing dishes',
   		'Learing at coderX-Tokyo'
-  	];
+  	]
 app.set('views', './views');
 app.set('view engine', 'pug');
 
@@ -46,7 +39,7 @@ app.get('/todos/create', function(req, res) {
 app.post('/todos/create', function(req, res){
 	todos.push(req.body.todo);
 	res.redirect('/');
-})
+});
 
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
 
